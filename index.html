@@ -102,20 +102,6 @@
             color: #aaa;
         }
 
-        /* --- MENU MOBILE - MODO NOTURNO --- */
-        body.dark-mode nav {
-            background: #181818;
-            border-bottom-color: #292929;
-        }
-
-        body.dark-mode nav a {
-            color: #aaa;
-        }
-
-        body.dark-mode nav a:hover {
-            background: #222;
-        }
-
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         a { text-decoration: none; color: inherit; cursor: pointer; }
 
@@ -179,24 +165,264 @@
         #fab-container.open .fab-option:nth-child(3) { transition-delay: 0.15s; }
         #fab-container.open .fab-option:nth-child(4) { transition-delay: 0.20s; }
 
-        /* --- HEADER (NAVEGAÇÃO) --- */
-        header { background: #fff; padding: 20px 0; width: 100%; border-bottom: 1px solid #f0f0f0; position: sticky; top: 0; z-index: 100; transition: background-color 0.3s, border-color 0.3s; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; color: #222; transition: color 0.3s; }
-        
-        nav { display: flex; align-items: center; }
-        nav a { margin-left: 30px; color: #888; font-size: 0.9rem; transition: color 0.3s; position: relative; }
-        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #e6b255; transition: width 0.3s; }
-        nav a:hover::after, nav a.active::after { width: 100%; }
-        nav a:hover, nav a.active { color: #e6b255; }
+        /* ==========================================
+           NAVBAR - EDITORIAL ROMÂNTICO
+        ========================================== */
 
-        /* Menu Hambúrguer */
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
-        .hamburger span { width: 25px; height: 3px; background: #222; transition: 0.3s; border-radius: 3px; }
-        body.dark-mode .hamburger span { background: #ddd; }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            padding: 17px 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(190, 157, 100, 0.15);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        /* LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            white-space: nowrap;
+            cursor: pointer;
+            color: #29241f;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            font-weight: 400;
+            letter-spacing: -0.7px;
+        }
+
+        .logo-symbol {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.35rem;
+            color: #d8a54d;
+            font-weight: 400;
+        }
+
+        /* LINKS */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 2.1vw, 32px);
+        }
+
+        nav a {
+            position: relative;
+            margin: 0;
+            padding: 10px 0;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            color: #77716b;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        /* INDICADOR EM LOSANGO */
+        nav a:not(.nav-rsvp)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: #d8a54d;
+            transform: translateX(-50%) rotate(45deg) scale(0);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #c59442;
+        }
+
+        nav a:not(.nav-rsvp):hover::after,
+        nav a:not(.nav-rsvp).active::after {
+            width: 5px;
+            opacity: 1;
+            transform: translateX(-50%) rotate(45deg) scale(1);
+        }
+
+        /* RSVP */
+        nav .nav-rsvp {
+            padding: 10px 21px;
+            border: 1px solid #d8a54d;
+            color: #b88937;
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 1.3px;
+            border-radius: 2px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav .nav-rsvp:hover,
+        nav .nav-rsvp.active {
+            background: #d8a54d;
+            color: #fff;
+        }
+
+        nav .nav-rsvp::after {
+            display: none;
+        }
+
+        /* HAMBÚRGUER */
+        .hamburger {
+            display: none;
+            width: 42px;
+            height: 42px;
+            padding: 10px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: transparent;
+            border: 1px solid rgba(216, 165, 77, 0.35);
+            border-radius: 50%;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 19px;
+            height: 1.5px;
+            background: #a77d3a;
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        /* DARK MODE */
+        body.dark-mode header {
+            background: rgba(21, 21, 21, 0.96);
+            border-bottom-color: #34302a;
+        }
+
+        body.dark-mode .logo {
+            color: #f5f0e8 !important;
+        }
+
+        body.dark-mode nav a {
+            color: #bcb4aa;
+        }
+
+        body.dark-mode nav a:hover,
+        body.dark-mode nav a.active {
+            color: #e6b255;
+        }
+
+        body.dark-mode nav .nav-rsvp {
+            color: #e6b255;
+        }
+
+        body.dark-mode nav .nav-rsvp:hover,
+        body.dark-mode nav .nav-rsvp.active {
+            background: #e6b255;
+            color: #151515;
+        }
+
+        body.dark-mode .hamburger span {
+            background: #e6b255;
+        }
+
+        /* TABLET E MOBILE */
+        @media (max-width: 900px) {
+            header {
+                padding: 12px 0;
+            }
+
+            .logo-name {
+                font-size: 1.35rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                background: #fff;
+                border-bottom: 1px solid #eee5d7;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            nav a {
+                width: 100%;
+                margin: 0;
+                padding: 13px 15px;
+                text-align: center;
+                font-size: 0.86rem;
+            }
+
+            nav a:not(.nav-rsvp)::after {
+                bottom: 5px;
+            }
+
+            nav .nav-rsvp {
+                margin-top: 12px;
+                padding: 14px;
+                text-align: center;
+            }
+
+            body.dark-mode nav {
+                background: #181818;
+                border-bottom-color: #34302a;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                gap: 6px;
+            }
+
+            .logo-name {
+                font-size: 1.2rem;
+            }
+
+            .logo-symbol {
+                font-size: 1.1rem;
+            }
+        }
 
         /* --- SISTEMA DE PÁGINAS --- */
         .page { display: none; animation: fadeIn 0.5s ease; }
@@ -280,37 +506,6 @@
         /* VERSÃO MOBILE - CONVITE EDITORIAL */
         /* ============================================= */
         @media (max-width: 768px) {
-            /* Header */
-            header { padding: 15px 0; }
-            .hamburger { display: flex; }
-            
-            nav { 
-                display: none; 
-                position: absolute; 
-                top: 70px; 
-                left: 0; 
-                width: 100%; 
-                background: #fff; 
-                padding: 20px; 
-                border-bottom: 1px solid #f0f0f0; 
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
-                flex-direction: column; 
-            }
-            body.dark-mode nav { 
-                background: #181818; 
-                border-bottom-color: #292929; 
-            }
-            nav.open { display: flex; }
-            nav a { 
-                margin: 10px 0; 
-                padding: 10px; 
-                width: 100%; 
-                text-align: center; 
-                border-radius: 4px; 
-            }
-            nav a:hover { background: #f5f5f5; }
-            body.dark-mode nav a:hover { background: #222; }
-
             /* ============================================= */
             /* HERO - VERSÃO CONVITE EDITORIAL */
             /* ============================================= */
@@ -527,19 +722,31 @@
     <!-- NAVEGAÇÃO -->
     <header>
         <div class="container header-content">
-            <div class="logo">RAFAEL & SOFIA</div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="logo" onclick="showPage('home')">
+                <span class="logo-name">Rafael</span>
+                <span class="logo-symbol">&</span>
+                <span class="logo-name">Sofia</span>
             </div>
+
             <nav id="nav-menu">
                 <a onclick="showPage('home')" class="active" data-key="nav_home">Início</a>
                 <a onclick="showPage('quem-somos')" data-key="nav_who">Quem Somos</a>
                 <a onclick="showPage('data')" data-key="nav_date">Dia do Casamento</a>
                 <a onclick="showPage('galeria')" data-key="nav_gallery">Galeria</a>
-                <a onclick="showPage('rsvp')" data-key="nav_rsvp">RSVP</a>
+                <a onclick="showPage('rsvp')" class="nav-rsvp" data-key="nav_rsvp">RSVP</a>
             </nav>
+
+            <button class="hamburger" type="button"
+                    onclick="toggleMenu()"
+                    aria-label="Abrir ou fechar menu"
+                    aria-controls="nav-menu"
+                    aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
         </div>
     </header>
 
@@ -952,13 +1159,19 @@
 
         // ============ MENU HAMBÚRGUER ============
         function toggleMenu() {
-            document.getElementById('nav-menu').classList.toggle('open');
-            document.querySelector('.hamburger').classList.toggle('active');
+            const menu = document.getElementById('nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+
+            const isOpen = menu.classList.toggle('open');
+            hamburger.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
         }
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('nav-menu').classList.remove('open');
-                document.querySelector('.hamburger').classList.remove('active');
+                const hamburger = document.querySelector('.hamburger');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
         });
 
