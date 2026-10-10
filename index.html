@@ -214,6 +214,20 @@
             font-weight: 400;
         }
 
+        /* ALIANÇAS DA LOGO */
+        .logo-rings {
+            width: 30px;
+            height: 22px;
+            margin-left: 5px;
+            color: #d8a54d;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-rings {
+            transform: rotate(-8deg);
+        }
+
         /* LINKS */
         nav {
             display: flex;
@@ -422,6 +436,24 @@
             .logo-symbol {
                 font-size: 1.1rem;
             }
+
+            .logo-rings {
+                width: 24px;
+                height: 18px;
+                margin-left: 2px;
+            }
+        }
+
+        /* LINKS DESKTOP - MELHOR LEITURA */
+        @media (min-width: 901px) {
+            nav a:not(.nav-rsvp) {
+                color: #625d57;
+            }
+
+            nav a:not(.nav-rsvp):hover,
+            nav a:not(.nav-rsvp).active {
+                color: #c59442;
+            }
         }
 
         /* --- SISTEMA DE PÁGINAS --- */
@@ -563,7 +595,7 @@
             .hero-content {
                 order: 2;
                 max-width: 100%;
-                padding: 32px 20px 40px;
+                padding: 26px 20px 34px;
                 transform: none;
                 background: #fff;
                 position: relative;
@@ -574,6 +606,8 @@
                 color: #e6b255;
                 text-shadow: none;
                 margin-top: 0;
+                margin-bottom: 8px;
+                line-height: 1.35;
                 font-size: 1.55rem;
             }
 
@@ -581,7 +615,8 @@
                 color: #222;
                 text-shadow: none;
                 font-size: 2rem;
-                margin: 8px 0;
+                margin: 6px 0 12px;
+                line-height: 1.2;
             }
 
             .hero-content .date-line {
@@ -589,6 +624,7 @@
                 text-shadow: none;
                 justify-content: center;
                 font-size: 0.75rem;
+                margin-top: 14px;
             }
 
             .date-line .line {
@@ -598,7 +634,7 @@
             .countdown {
                 justify-content: center;
                 gap: 8px;
-                margin: 24px 0 0;
+                margin: 22px 0 0;
                 flex-wrap: nowrap;
             }
 
@@ -637,9 +673,25 @@
             .gallery-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
             
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 20px; }
-            #fab-container { bottom: 80px; right: 20px; }
-            #fab-main { width: 48px; height: 48px; font-size: 28px; }
-            .fab-option { width: 38px; height: 38px; }
+
+            /* FAB MOBILE - AJUSTE */
+            #fab-container {
+                right: 14px;
+                bottom: 18px;
+                gap: 10px;
+            }
+
+            #fab-main {
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+                box-shadow: 0 4px 14px rgba(180, 125, 40, 0.22);
+            }
+
+            .fab-option {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         /* ============================================= */
@@ -672,14 +724,32 @@
             .main-title { font-size: 2.2rem; }
             .script-title { font-size: 1.6rem; }
             .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .countdown-item { padding: 8px 12px; min-width: 50px; }
-            .countdown-item .number { font-size: 1.5rem; }
             
             .hero-content {
                 padding: 24px 16px 32px;
             }
             .hero-image-wrapper {
                 height: 40vh;
+            }
+
+            /* CONTADOR - AJUSTE TELAS ESTREITAS */
+            .countdown {
+                width: 100%;
+                gap: 7px;
+            }
+
+            .countdown-item {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 12px 3px;
+            }
+
+            .countdown-item .number {
+                font-size: clamp(1.25rem, 6vw, 1.65rem);
+            }
+
+            .countdown-item .label {
+                font-size: clamp(0.55rem, 2.3vw, 0.7rem);
             }
         }
     </style>
@@ -727,6 +797,18 @@
                 <span class="logo-name">Rafael</span>
                 <span class="logo-symbol">&</span>
                 <span class="logo-name">Sofia</span>
+
+                <svg class="logo-rings" viewBox="0 0 48 32"
+                     fill="none" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true">
+                    <circle cx="18" cy="19" r="10"
+                            stroke="currentColor" stroke-width="2.2"/>
+                    <circle cx="30" cy="19" r="10"
+                            stroke="currentColor" stroke-width="2.2"/>
+                    <path d="M12 7L18 2L24 7L18 12Z"
+                          stroke="currentColor" stroke-width="1.6"
+                          stroke-linejoin="round"/>
+                </svg>
             </div>
 
             <nav id="nav-menu">
